@@ -1,27 +1,34 @@
 package com.codepath.assignment.tipcalculator;
 
+import java.text.DecimalFormat;
+
 import android.os.Bundle;
-import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class CalculateActivity extends Activity {
 	
 	private double amount;
-	private TextView etAmount;
-	private TextView etOtherPct;
+	private EditText etAmount;
+	private EditText etOtherPct;
 	private TextView tvTipAmt;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calculate);
-		etAmount = (TextView) findViewById(R.id.etAmountValue);
-		etOtherPct = (TextView) findViewById(R.id.etOtherPct);
+		etAmount = (EditText) findViewById(R.id.etAmountValue);
+		etOtherPct = (EditText) findViewById(R.id.etOtherPct);
 		tvTipAmt = (TextView) findViewById(R.id.tvTipValue);
+		//InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	    //mgr.showSoftInput(etAmount, InputMethodManager.SHOW_IMPLICIT);
+	    //mgr.toggleSoftInput(InputMethodManager.SHOW_FORCED,1);
 	}
 
 	@Override
@@ -53,12 +60,20 @@ public class CalculateActivity extends Activity {
 
 	}
 	
+	public void showSoftKeyboard(View view){
+		if(view.requestFocus()){
+	        InputMethodManager imm =(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	        imm.showSoftInput(view,InputMethodManager.SHOW_IMPLICIT);
+	    }
+	}
+	
 	private void calculate(double percent){
 		try {
 			Double amountValue = Double.parseDouble(etAmount.getText().toString());
+			DecimalFormat df = new DecimalFormat("$#.00");
 			amount = amountValue.doubleValue();
 			double tip = amount * percent;
-			tvTipAmt.setText(Double.valueOf(tip).toString());
+			tvTipAmt.setText(df.format(tip));
 		} catch (NumberFormatException e){
 			Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT).show();
 		}
