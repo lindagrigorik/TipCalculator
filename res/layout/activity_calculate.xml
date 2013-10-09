@@ -105,4 +105,14 @@
         android:layout_alignBottom="@+id/tvTipIs"
         android:layout_alignLeft="@+id/btOther"/>
 
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/etOtherPct"
+        android:layout_below="@+id/tvTipValue"
+        android:max="100"
+        android:progress="1"
+        android:layout_marginTop="44dp" />
+
 </RelativeLayout>
