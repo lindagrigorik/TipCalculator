@@ -53,6 +53,8 @@ public class CalculateActivity extends Activity {
 		pctList.add(btFifteen);
 		pctList.add(btTwenty);
 		pctList.add(btOther);
+		etAmount.setFocusableInTouchMode(true);
+		etAmount.requestFocus();
 		/*skBar = (SeekBar) findViewById(R.id.seekBar1);
 		skBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			   
@@ -168,24 +170,13 @@ public class CalculateActivity extends Activity {
 		return true;
 	}
 
-	public void onTen(View view){
+	public void onClickPercent(View view){
 		this.changeButtonDisplay((Button)findViewById(view.getId()));
-		tipPercent=0.10;
+		String percent = (String) view.getTag();
+		tipPercent= Double.parseDouble(percent);
 		this.calculate();
 	}
-	
-	public void onFifteen(View view){
-		this.changeButtonDisplay((Button)findViewById(view.getId()));
-		tipPercent=0.15;
-		this.calculate();
-	}
-	
-	public void onTwenty(View view){
-		this.changeButtonDisplay((Button)findViewById(view.getId()));
-		tipPercent=0.2;
-		this.calculate();
-	}
-	
+
 	public void onOther(View view) {
 		try {
 			this.changeButtonDisplay((Button)findViewById(view.getId()));
@@ -206,13 +197,6 @@ public class CalculateActivity extends Activity {
 				currBt.setTypeface(null, Typeface.NORMAL);
 			}
 		}
-	}
-	
-	public void showSoftKeyboard(View view){
-		if(view.requestFocus()){
-	        InputMethodManager imm =(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-	        imm.showSoftInput(view,InputMethodManager.SHOW_IMPLICIT);
-	    }
 	}
 	
 	private void calculate(){

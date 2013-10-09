@@ -17,6 +17,7 @@
         android:layout_marginLeft="22dp"
         android:layout_toRightOf="@+id/tvAmount"
         android:textSize="16sp"
+        android:inputType="number"
         android:ems="10" />
 
     <TextView
@@ -34,7 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btTen"
         android:layout_below="@+id/btTen"
-        android:onClick="onFifteen"
+        android:onClick="onClickPercent"
+        android:tag="0.15"
         android:text="15%" />
 
     <Button
@@ -43,7 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btFifteen"
         android:layout_below="@+id/btFifteen"
-        android:onClick="onTwenty"
+        android:onClick="onClickPercent"
+        android:tag="0.20"
         android:text="20%" />
 
     <TextView
@@ -72,7 +75,8 @@
         android:layout_alignLeft="@+id/etAmountValue"
         android:layout_below="@+id/etAmountValue"
         android:layout_marginTop="42dp"
-        android:onClick="onTen"
+        android:onClick="onClickPercent"
+        android:tag="0.10"
         android:text="10%" />
 
     <EditText
@@ -83,6 +87,7 @@
         android:layout_toRightOf="@+id/btOther"
         android:ems="10"
         android:textSize="12sp"
+        android:inputType="number"
         android:hint="@string/tip_percent_example" >
 
         <requestFocus />
