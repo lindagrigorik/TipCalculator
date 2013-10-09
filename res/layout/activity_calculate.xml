@@ -16,6 +16,7 @@
         android:layout_alignBottom="@+id/tvAmount"
         android:layout_marginLeft="22dp"
         android:layout_toRightOf="@+id/tvAmount"
+        android:textSize="16sp"
         android:ems="10" />
 
     <TextView
@@ -55,16 +56,6 @@
         android:layout_marginTop="70dp"
         android:text="Tip Is:" />
 
-    <TextView
-        android:id="@+id/tvX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btFifteen"
-        android:layout_alignBottom="@+id/btFifteen"
-        android:layout_alignRight="@+id/tvAmount"
-        android:gravity="right"
-        android:text="X" />
-
     <Button
         android:id="@+id/btOther"
         android:layout_width="wrap_content"
@@ -103,16 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tvTipIs"
         android:layout_alignBottom="@+id/tvTipIs"
+        android:textSize="16sp"
         android:layout_alignLeft="@+id/btOther"/>
-
-    <SeekBar
-        android:id="@+id/seekBar1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/etOtherPct"
-        android:layout_below="@+id/tvTipValue"
-        android:max="100"
-        android:progress="1"
-        android:layout_marginTop="44dp" />
 
 </RelativeLayout>

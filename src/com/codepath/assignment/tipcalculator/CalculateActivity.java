@@ -34,7 +34,7 @@ public class CalculateActivity extends Activity {
 	private Button btTwenty;
 	private Button btOther;
 	private List<Button> pctList;
-	private SeekBar skBar;
+	//private SeekBar skBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class CalculateActivity extends Activity {
 		pctList.add(btFifteen);
 		pctList.add(btTwenty);
 		pctList.add(btOther);
-		skBar = (SeekBar) findViewById(R.id.seekBar1);
+		/*skBar = (SeekBar) findViewById(R.id.seekBar1);
 		skBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			   
 			   @Override
@@ -79,7 +79,7 @@ public class CalculateActivity extends Activity {
 					Toast.makeText(getBaseContext(), "Please enter a valid amount", Toast.LENGTH_SHORT).show();
 				}
 			   }
-			  });
+			  });*/
 		tipPercent=0;
 		etAmount.addTextChangedListener(new TextWatcher(){
 			@Override
@@ -91,6 +91,46 @@ public class CalculateActivity extends Activity {
 						amount=Double.parseDouble(totalAmount);
 						DecimalFormat df = new DecimalFormat("$#.00");
 						tvTipAmt.setText(df.format(amount * tipPercent));
+					} catch (NumberFormatException e){
+						Toast.makeText(getBaseContext(), "Please enter a valid amount", Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					tvTipAmt.setText("");
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		etOtherPct.addTextChangedListener(new TextWatcher(){
+			@Override
+			public void afterTextChanged(Editable arg0) {
+				// TODO Auto-generated method stub
+				String totalAmount=etAmount.getText().toString();
+				if ( totalAmount != null && !totalAmount.isEmpty()){
+					try {
+						Double otherPct = Double.parseDouble(etOtherPct.getText().toString());
+						tipPercent = otherPct.doubleValue()/100;
+						amount=Double.parseDouble(totalAmount);
+						DecimalFormat df = new DecimalFormat("$#.00");
+						tvTipAmt.setText(df.format(amount * tipPercent));
+						for (Button currBt : pctList){
+							currBt.setTypeface(null,  Typeface.NORMAL);
+						}
+						btOther.setTypeface(null, Typeface.BOLD);
 					} catch (NumberFormatException e){
 						Toast.makeText(getBaseContext(), "Please enter a valid amount", Toast.LENGTH_SHORT).show();
 					}
